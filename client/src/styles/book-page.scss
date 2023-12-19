@@ -1,0 +1,52 @@
+.book-card {
+    max-width: 200px;
+    height: 100%;
+}
+
+.book-page {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    margin: 1rem;
+
+    .book-page__cover-container {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+    }
+
+    .book-page__title {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .book-page__author {
+        margin-bottom: 20px;
+    }
+}
+@media (min-width: 576px) {
+    .book-page {
+        display: grid;
+        grid-template-areas:
+            "cover info"
+            "reviews reviews";
+        grid-template-columns: 250px 1fr;
+        margin: 0 1rem;
+    }
+    .book-page__cover-container {
+        display: block;
+    }
+    
+    .book-page__cover {
+        max-width: 250px;
+        grid-area: "cover";
+    }
+
+    .book-page__information {
+        padding: 20px;
+        grid-area: "info";
+    }
+
+    .book-page__reviews {
+        grid-area: "reviews";
+    }
+}
