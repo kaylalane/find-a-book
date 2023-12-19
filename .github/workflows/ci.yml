@@ -1,5 +1,9 @@
 name: Unit Tests
 
+defaults:
+    run:
+        working-directory: client
+
 on:
     push:
         branches: [main]
@@ -10,8 +14,6 @@ jobs:
     unit-test:
         runs-on: ubuntu-latest
         steps:
-            - name: Navigate to client folder
-              run: cd client
             - uses: actions/checkout@v3
             - name: Setup Node
               uses: actions/setup-node@v3
@@ -23,8 +25,6 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: Navigate to client folder
-              run: cd client
             - uses: actions/checkout@v3
             - name: Setup Node
               uses: actions/setup-node@v3
