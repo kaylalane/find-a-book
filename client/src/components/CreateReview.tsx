@@ -15,7 +15,7 @@ export default function CreateReview({ book }: { book: Book }) {
     const handleReview = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            const req = await fetch(`/api/review/${book.id}`, {
+            const req = await fetch(`/api/review/${book._id}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export default function CreateReview({ book }: { book: Book }) {
                 body: JSON.stringify({
                     review: review.review,
                     overall_rating: rating,
-                    bookId: book.id,
+                    bookId: book._id,
                     authorId: book.authorId,
                     authorName: book.authorName,
                     userId: "657bd9cb20694bcc71eea5e7",

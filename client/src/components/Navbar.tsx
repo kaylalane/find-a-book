@@ -11,7 +11,7 @@ export default function Navbar() {
             <header> 
                 <NavLink to="/" className="logo"> Find-a-book </NavLink> 
                 <form action="" className="search-form" onSubmit={(e) => handleSearch(e)}> 
-                    <input type="search" className="search-form__input" />
+                    <input type="search" className="search-form__input"/>
                     <button type="submit" className="search-form__button "> 
                     <span className=" sr-only ">Search Button</span> </button> 
                 </form>

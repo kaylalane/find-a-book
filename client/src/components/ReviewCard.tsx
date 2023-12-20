@@ -69,7 +69,7 @@ export default function ReviewCard({ review }: { review: Book_Review }) {
             <div>
                 {comments &&
                     comments.map((comment) => {
-                        return <Comment comment={comment} key={comment.id} />;
+                        return <Comment comment={comment} key={comment._id} />;
                     })}
             </div>
 

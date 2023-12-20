@@ -1,7 +1,7 @@
 // Type definitions for global variables
 
 type User = {
-    id: string;
+    _id: string;
     name: string;
     email: string;
     password: string;
@@ -10,14 +10,14 @@ type User = {
 };
 
 type Author = {
-    id: string;
+    _id: string;
     name: string;
     bio: string;
     profileImg?: string;
 };
 
 type Book = {
-    id: string;
+    _id: string;
     ISBN: string;
     title: string;
     publishedAt: string;
@@ -32,7 +32,7 @@ type Book = {
 };
 
 type Book_Review = {
-    id: string;
+    _id: string;
     review: string;
     createdAt: string;
     updatedAt: string;
@@ -48,7 +48,7 @@ type Book_Review = {
 };
 
 type CommentType = {
-    id: string;
+    _id: string;
     comment: string;
     createdAt: string;
     updatedAt: string;

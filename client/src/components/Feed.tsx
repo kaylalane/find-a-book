@@ -28,7 +28,7 @@ export default function Feed() {
             <div className="reviews-container">
                 {reviews &&
                     reviews.map((review) => {
-                        return <ReviewCard key={review.id} review={review} />;
+                        return <ReviewCard key={review._id} review={review} />;
                     })}
             </div>
         </div>
