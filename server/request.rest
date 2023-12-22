@@ -1,0 +1,25 @@
+GET http://localhost:3000/api/user
+Content-Type: application/application/json
+
+{
+    "username": "polly",
+    "password": "password",
+    "name": "Polly",
+    "email": "polly@mail.com"
+}
+
+###
+
+GET http://localhost:3000/api/user/kaylalane
+Content-Type: application/application/json
+
+
+###
+
+POST http://localhost:3000/api/user/login
+Content-Type: application/application/json
+
+{
+    "username": "kaylalane",
+    "password": "password",
+}

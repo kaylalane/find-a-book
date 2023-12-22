@@ -1,4 +1,8 @@
 // Type definitions for global variables
+type Account = {
+    _id: string;
+    userId: string;
+};
 
 type User = {
     _id: string;
@@ -7,6 +11,7 @@ type User = {
     password: string;
     profileImg?: string;
     bio?: string;
+    refreshToken: string;
 };
 
 type Author = {

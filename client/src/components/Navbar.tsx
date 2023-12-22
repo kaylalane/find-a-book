@@ -3,21 +3,33 @@ import { NavLink } from "react-router-dom";
 import { FormEvent } from "react";
 
 export default function Navbar() {
-
     const handleSearch = (e: FormEvent) => {
         e.preventDefault();
-    }
-        return (
-            <header> 
-                <NavLink to="/" className="logo"> Find-a-book </NavLink> 
-                <form action="" className="search-form" onSubmit={(e) => handleSearch(e)}> 
-                    <input type="search" className="search-form__input"/>
-                    <button type="submit" className="search-form__button "> 
-                    <span className=" sr-only ">Search Button</span> </button> 
-                </form>
+    };
+    return (
+        <header>
+            <NavLink to="/" className="logo">
+                {" "}
+                Find-a-book{" "}
+            </NavLink>
+            <form
+                action=""
+                className="search-form"
+                onSubmit={(e) => handleSearch(e)}
+            >
+                <input type="search" className="search-form__input" />
+                <button type="submit" className="search-form__button ">
+                    <span className=" sr-only ">Search Button</span>{" "}
+                </button>
+            </form>
 
-                <nav> 
-                <NavLink to="/" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "isActive" : "" } >
+            <nav>
+                <NavLink
+                    to="/"
+                    className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "isActive" : ""
+                    }
+                >
                     Home
                 </NavLink>
 
@@ -34,7 +46,7 @@ export default function Navbar() {
                         <DropdownMenu.Content className="dropdown-container">
                             <DropdownMenu.Label />
                             <DropdownMenu.Item className=" dropdown__item">
-                                <a href="/profile">Profile</a>
+                                <a href="/account">Profile</a>
                             </DropdownMenu.Item>
                             <DropdownMenu.Item className=" dropdown__item">
                                 <a href="/books">Books</a>
