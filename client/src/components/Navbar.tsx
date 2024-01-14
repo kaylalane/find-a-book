@@ -1,6 +1,7 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { NavLink } from "react-router-dom";
 import { FormEvent } from "react";
+import { SignOutButton } from "@clerk/clerk-react";
 
 export default function Navbar() {
     const handleSearch = (e: FormEvent) => {
@@ -72,6 +73,9 @@ export default function Navbar() {
                             </DropdownMenu.Item>
                             <DropdownMenu.Item className=" dropdown__item">
                                 Settings
+                            </DropdownMenu.Item>
+                            <DropdownMenu.Item className=" dropdown__item">
+                                <SignOutButton />
                             </DropdownMenu.Item>
                         </DropdownMenu.Content>
                     </DropdownMenu.Portal>

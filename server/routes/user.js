@@ -12,11 +12,14 @@ const { sign, verify } = jwt;
 
 const router = express.Router();
 
+router.get("/auth", authenticateToken, async (req, res) => {
+    return res.send(req.user);
+});
+
 router.get("/:id", authenticateToken, async (req, res) => {
     let userCollection = await db.collection("User");
     let userExists = await userCollection.findOne({ username: req.params.id });
 
-    console.log(req.params.id);
     if (userExists) {
         res.status(200).send(userExists);
     }
@@ -45,23 +48,27 @@ router.post("/login", async (req, res) => {
 
 //CREATE A USER
 router.post("/", async (req, res) => {
-    const { username, email, password, name } = req.body;
+    const { username, email, clerkId } = req.body;
 
     try {
-        let userCollection = await db.collection("User");
-        let userExists = await userCollection.findOne({
-            username: req.body.username,
+        const userCollection = await db.collection("User");
+
+        const usernameExists = await userCollection.findOne({
+            username: username,
         });
 
-        if (!userExists) {
-            const hashedPassword = await hashPassword(password);
+        const emailExists = await userCollection.findOne({
+            email: email,
+        });
 
-            const user = {
-                name: name,
+        if (!usernameExists && !emailExists) {
+            const u = {
                 username: username,
                 email: email,
-                password: hashedPassword,
+                clerkId: clerkId,
+                isAdmin: false,
             };
+            const user = await userCollection.insertOne(u);
 
             res.status(201);
             res.json(user);

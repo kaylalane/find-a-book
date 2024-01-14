@@ -1,31 +1,45 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
+import Layout from "../components/Layout";
+import "../styles/account.scss";
 
 export default function AccountPage() {
-    const [user, setUser] = useState<User>();
-    const params = useParams();
-    const navigate = useNavigate();
+    const { user } = useUser();
+    if (!user) return <div>Loading</div>;
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            const accessToken = localStorage.getItem("accessToken");
-            try {
-                const req = await fetch(
-                    `http://localhost:3000/api/user/${params.id}`,
-                    {
-                        method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                        },
-                    }
-                );
-
-                setUser(await req.json());
-            } catch (err) {
-                navigate("/login");
-            }
-        };
-        fetchUser();
-    }, [params]);
-    return <div>{user && <div>{user.email}</div>}</div>;
+    return (
+        <Layout>
+            <div className="account-page">
+                <div className="left-column">
+                    <img
+                        src={user?.imageUrl}
+                        alt="profile"
+                        className="account__image"
+                    />
+                    <table className="account__table">
+                        <thead>
+                            <tr>
+                                <th colSpan="2">
+                                    {user?.username}{" "}
+                                    <a href="/user/edit" className="edit-button">(edit profile)</a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>Interests</td>
+                            <td>with two columns</td>
+                        </tr>
+                        <tr>
+                            <td>Favorite Book</td>
+                            <td>with two columns</td>
+                        </tr>
+                        <tr>
+                            <td>About Me</td>
+                            <td>with two columns</td>
+                        </tr>
+                    </table>
+                </div>
+                <div className="right-column"></div>
+            </div>
+        </Layout>
+    );
 }

@@ -5,7 +5,7 @@ import { FC } from "react";
 const ButtonVariants = cva(["btn"], {
     variants: {
         intent: {
-            primary: ["bg-primary"],
+            primary: ["btn-primary"],
             secondary: ["btn-secondary"],
             white: [
                 "bg-secondary",
@@ -24,7 +24,7 @@ const ButtonVariants = cva(["btn"], {
             ],
         },
         size: {
-            small: ["text-md", "py-1", "px-4", "w-fit"],
+            small: ["text-md", "py-1", "px-4", "w-fit", "btn--small"],
             medium: ["text-lg", "px-6", "py-2"],
             large: ["text-xlg", "px-8", "py-4"],
         },

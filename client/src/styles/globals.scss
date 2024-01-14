@@ -4,9 +4,9 @@
     font-weight: 400;
 
     --text: 242, 242, 242;
-    --background: 6, 12, 15;
-    --primary: 62, 156, 172;
-    --secondary: 21, 103, 117;
+    --background: 6, 12, 15; // #060c0f
+    --primary: 62, 156, 172; // #3e9cac
+    --secondary: 21, 103, 117; // #156775
     --accent: 6, 149, 178;
     --border-radius: 5px;
     ---s: #3e9cac;
@@ -16,10 +16,16 @@
     background-color: rgb(var(--background));
 }
 
+* {
+    box-sizing: border-box;
+}
+
 //GENERAL STYLES STARTS
 body {
     color: rgb(var(--text));
     background-color: rgb(var(--background));
+    padding: 0;
+    margin: 0;
 }
 
 a {
@@ -76,7 +82,7 @@ header {
     }
 
     .search-form__button {
-        background: url("../../public/search.svg") no-repeat;
+        background: url("/search.svg") no-repeat;
         right: 8px;
 
         display: inline-block;
@@ -136,6 +142,7 @@ nav {
 .btn {
     border-radius: 5px;
     padding: 0.5rem 1rem;
+    border: none;
 }
 
 .btn-primary {
@@ -146,6 +153,10 @@ nav {
 .btn-secondary {
     color: rgb(var(--text));
     background-color: rgb(var(--secondary));
+}
+
+.btn--small {
+    width: fit-content;
 }
 
 .page__title {
@@ -160,6 +171,139 @@ nav {
 }
 
 //HOME PAGE STARTS
+
+#signedOutHome .main-content {
+    display: flex;
+    flex-flow: column nowrap;
+    overflow: hidden;
+
+    .headerImage {
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    p {
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .cl-rootBox {
+        display: none;
+    }
+}
+
+#signedOutHome aside {
+    padding: 1rem;
+
+    .article__title {
+        padding-bottom: 15px;
+        text-align: left;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .article__cover {
+        width: 100%;
+    }
+}
+
+#signedOutHome .promo {
+    text-align: center;
+}
+
+#signedOutHome .description {
+    padding: 0 1rem;
+}
+
+#signedOutHome .auth-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-align: center;
+
+    gap: 1rem;
+    margin-top: 10px;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+#signedOutHome .authButtons {
+    margin: 10px 0;
+    width: 100%;
+
+    button:first-of-type {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        background-color: rgb(var(--primary));
+    }
+    button:last-of-type {
+        border: none;
+        background-color: transparent;
+        padding-top: 15px;
+        color: rgb(var(--accent));
+        text-decoration: underline;
+    }
+
+    .terms {
+        margin-top: 10px;
+    }
+}
+
+#signedOutHome .recommendations {
+    padding: 0 1rem;
+    overflow: hidden;
+    overflow: hidden;
+}
+
+#signedOutHome .genres__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    list-style-type: none;
+    padding: 0;
+
+    .genres__item {
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        background-color: rgba(var(--text), 0.1);
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+#signedOutHome .recommendations__title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: start;
+}
+#signedOutHome .recommendations__list {
+    justify-content: start;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 10px;
+    list-style-type: none;
+    overflow-x: scroll;
+    padding: 0;
+    scrollbar-width: none;
+
+    .recommendations__card {
+        height: 200px;
+        width: auto;
+    }
+}
 
 .currently-reading {
     grid-area: currently-reading;
@@ -280,12 +424,32 @@ nav {
         border-top: 1px solid rgba(var(--text), 0.5);
         border-bottom: 1px solid rgba(var(--text), 0.5);
     }
+
+    .review_form {
+    }
 }
 
 //HOMEPAGE ENDS
 
 .author-name {
     text-decoration: underline;
+}
+
+footer {
+    display: flex;
+    flex-flow: column;
+    gap: 2rem;
+    font-size: 14px;
+    padding: 1rem;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-flow: column;
 }
 
 @media (max-width: 576px) {
@@ -295,8 +459,6 @@ nav {
         flex-flow: column nowrap;
         margin: 10px 15px;
     }
-
-
 }
 
 @media (min-width: 576px) {
@@ -307,5 +469,72 @@ nav {
         gap: 1rem;
         padding: 1rem;
     }
-    
+
+    #signedOutHome .main-content {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 2fr;
+
+        .headerImage {
+            display: none;
+        }
+        .promo {
+            grid-row: 1;
+            grid-column: 1 / span 2;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+        }
+
+        .auth-container {
+            grid-row: 1;
+            grid-column: 3 / span 2;
+        }
+
+        aside {
+            grid-row: 2;
+            grid-column: 4 / span 1;
+            padding: 0 0.5rem;
+
+            .article__cover {
+                height: 150px;
+                width: auto;
+            }
+        }
+
+        .recommendations {
+            grid-row: 2;
+            grid-column: 1 / span 3;
+            margin: 1rem;
+            padding: 0 1rem;
+            overflow: hidden;
+        }
+
+        .recommendation__container {
+            margin-bottom: .5rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            background-color: rgba(var(--primary), 0.2);
+        }
+
+        .genres__list {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .cl-rootBox {
+            display: block;
+        }
+
+        .authButtons {
+            display: none;
+        }
+    }
+    footer {
+        flex-flow: row;
+
+        .copyright {
+            margin-left: auto;
+        }
+    }
 }

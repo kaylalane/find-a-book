@@ -34,13 +34,15 @@
     background-color: rgb(var(--primary));
 }
 
-.review__form {
+.review-card__form {
     display: flex;
+    gap: 0.5rem;
+    flex-flow: column nowrap;
     width: 100%;
     color: rgb(var(--background));
 }
 
-.review-comment {
+.review-card__comment {
     flex-basis: 100%;
     padding: 10px;
     border-radius: var(--border-radius);

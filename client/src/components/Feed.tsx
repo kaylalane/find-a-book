@@ -17,7 +17,6 @@ export default function Feed() {
                 },
             });
             const res = await req.json();
-            console.log(res);
             setReviews(res);
         }
         fetchReviews();

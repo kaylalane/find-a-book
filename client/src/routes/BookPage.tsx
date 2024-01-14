@@ -54,7 +54,7 @@ export default function BookPage() {
                 <div>
                     <h2 className="heading">Book Reviews</h2>
                     <a
-                        href={`/review/new/${book?._id || ""}`}
+                        href={`/review/${book?._id || ""}`}
                         className="btn btn-primary"
                     >
                         Create a Review

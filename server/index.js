@@ -4,6 +4,7 @@ import path from "path";
 import books from "./routes/book.js";
 import reviews from "./routes/review.js";
 import comments from "./routes/comment.js";
+import authors from "./routes/author.js";
 import users from "./routes/user.js";
 import { fileURLToPath } from "url";
 import jwt from "jsonwebtoken";
@@ -26,6 +27,7 @@ app.use("/api/books/", books);
 app.use("/api/reviews/", reviews);
 app.use("/api/comments/", comments);
 app.use("/api/user/", users);
+app.use("/api/author/", authors);
 
 app.get("/", (req, res) => {
     res.sendFile(path.resolve("../client/dist/index.html"));

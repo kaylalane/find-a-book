@@ -76,7 +76,7 @@ export default function ReviewCard({ review }: { review: Book_Review }) {
             <div className="review-card__like-information">
                 <p> People have liked this </p>
             </div>
-            <ReviewComment />
+            <ReviewComment {...review} />
         </div>
     );
 }
