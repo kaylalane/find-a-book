@@ -1,7 +1,27 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { NavLink } from "react-router-dom";
-import { FormEvent } from "react";
+import { FormEvent, forwardRef } from "react";
 import { SignOutButton } from "@clerk/clerk-react";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import * as Menubar from "@radix-ui/react-menubar";
+import clsx from "clsx";
+
+const ListItem = forwardRef(
+    ({ className, children, title, ...props }, forwardedRef) => (
+        <li>
+            <NavigationMenu.Link asChild>
+                <a
+                    className={clsx("ListItemLink", className)}
+                    {...props}
+                    ref={forwardedRef}
+                >
+                    <div className="ListItemHeading">{title}</div>
+                    <p className="ListItemText">{children}</p>
+                </a>
+            </NavigationMenu.Link>
+        </li>
+    )
+);
 
 export default function Navbar() {
     const handleSearch = (e: FormEvent) => {
@@ -9,30 +29,21 @@ export default function Navbar() {
     };
     return (
         <header>
-            <NavLink to="/" className="logo">
-                {" "}
-                Find-a-book{" "}
-            </NavLink>
-            <form
-                action=""
-                className="search-form"
-                onSubmit={(e) => handleSearch(e)}
-            >
-                <input type="search" className="search-form__input" />
-                <button type="submit" className="search-form__button ">
-                    <span className=" sr-only ">Search Button</span>{" "}
-                </button>
-            </form>
-
             <nav>
-                <NavLink
-                    to="/"
-                    className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "isActive" : ""
-                    }
-                >
-                    Home
+                <NavLink to="/" className="logo">
+                    {" "}
+                    Find-a-book{" "}
                 </NavLink>
+                <form
+                    action=""
+                    className="search-form"
+                    onSubmit={(e) => handleSearch(e)}
+                >
+                    <input type="search" className="search-form__input" />
+                    <button type="submit" className="search-form__button ">
+                        <span className=" sr-only ">Search Button</span>{" "}
+                    </button>
+                </form>
 
                 <DropdownMenu.Root>
                     <DropdownMenu.Trigger asChild>
@@ -49,12 +60,7 @@ export default function Navbar() {
                             <DropdownMenu.Item className=" dropdown__item">
                                 <a href="/account">Profile</a>
                             </DropdownMenu.Item>
-                            <DropdownMenu.Item className=" dropdown__item">
-                                <a href="/books">Books</a>
-                            </DropdownMenu.Item>
-                            <DropdownMenu.Item className=" dropdown__item">
-                                Messages
-                            </DropdownMenu.Item>
+
                             <DropdownMenu.Item className=" dropdown__item">
                                 Friends
                             </DropdownMenu.Item>
@@ -81,6 +87,90 @@ export default function Navbar() {
                     </DropdownMenu.Portal>
                 </DropdownMenu.Root>
             </nav>
+            <menu className="menu__list">
+                <a href="">Home</a>
+                <a href="">My Books</a>
+                <Menubar.Root>
+                    <Menubar.Menu>
+                        <Menubar.Trigger className="menubar__trigger">
+                            Browse
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="icon icon-tabler icon-tabler-caret-down-filled"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                />
+                                <path
+                                    d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6l-.083 -.094l-.054 -.077l-.054 -.096l-.017 -.036l-.027 -.067l-.032 -.108l-.01 -.053l-.01 -.06l-.004 -.057v-.118l.005 -.058l.009 -.06l.01 -.052l.032 -.108l.027 -.067l.07 -.132l.065 -.09l.073 -.081l.094 -.083l.077 -.054l.096 -.054l.036 -.017l.067 -.027l.108 -.032l.053 -.01l.06 -.01l.057 -.004l12.059 -.002z"
+                                    stroke-width="0"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                        </Menubar.Trigger>{" "}
+                        <Menubar.Portal>
+                            <Menubar.Content className="menubar__content">
+                                <Menubar.Item className="menubar__item">
+                                    Recommendations
+                                </Menubar.Item>
+                                <Menubar.Item className="menubar__item">
+                                    Lists
+                                </Menubar.Item>
+                            </Menubar.Content>
+                        </Menubar.Portal>
+                    </Menubar.Menu>
+                </Menubar.Root>
+                <Menubar.Root>
+                    <Menubar.Menu>
+                        <Menubar.Trigger className="menubar__trigger">
+                            Community
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="icon icon-tabler icon-tabler-caret-down-filled"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                />
+                                <path
+                                    d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6l-.083 -.094l-.054 -.077l-.054 -.096l-.017 -.036l-.027 -.067l-.032 -.108l-.01 -.053l-.01 -.06l-.004 -.057v-.118l.005 -.058l.009 -.06l.01 -.052l.032 -.108l.027 -.067l.07 -.132l.065 -.09l.073 -.081l.094 -.083l.077 -.054l.096 -.054l.036 -.017l.067 -.027l.108 -.032l.053 -.01l.06 -.01l.057 -.004l12.059 -.002z"
+                                    stroke-width="0"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                        </Menubar.Trigger>{" "}
+                        <Menubar.Portal>
+                            <Menubar.Content className="menubar__content">
+                                <Menubar.Item className="menubar__item">
+                                    Groups
+                                </Menubar.Item>
+                                <Menubar.Item className="menubar__item">
+                                    Recommendations
+                                </Menubar.Item>
+                            </Menubar.Content>
+                        </Menubar.Portal>
+                    </Menubar.Menu>
+                </Menubar.Root>
+            </menu>
         </header>
     );
 }
