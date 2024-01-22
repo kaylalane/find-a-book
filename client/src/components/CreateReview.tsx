@@ -7,7 +7,7 @@ const initialState = {
     overallRating: null,
 };
 
-export default function CreateReview({ book }: { book: Book }) {
+export default function CreateReview({ book }: { book: BookType }) {
     const TOTAL_STARS = 5;
     const [review, setReview] = useState(initialState);
     const [rating, setRating] = useState(-1);

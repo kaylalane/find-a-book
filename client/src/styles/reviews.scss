@@ -50,6 +50,13 @@
     color: rgb(var(--background));
 }
 
+.comments__container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 8px;
+    width: 100%;
+}
+
 @media (max-width: 576px) {
     .star-container {
         display: none;

@@ -1,5 +1,5 @@
 import { useUser } from "@clerk/clerk-react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function NewUser() {
     const { user } = useUser();

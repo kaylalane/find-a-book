@@ -1,8 +1,8 @@
-import ReviewCard from "./ReviewCard";
+import FeedItemCard from "./FeedItemCard";
 import { useState, useEffect } from "react";
 
 export default function Feed() {
-    const [reviews, setReviews] = useState<Book_Review[]>();
+    const [reviews, setReviews] = useState<Book_ReviewType[]>();
 
     useEffect(() => {
         async function fetchReviews() {
@@ -27,7 +27,9 @@ export default function Feed() {
             <div className="reviews-container">
                 {reviews &&
                     reviews.map((review) => {
-                        return <ReviewCard key={review._id} review={review} />;
+                        return (
+                            <FeedItemCard key={review._id} review={review} />
+                        );
                     })}
             </div>
         </div>

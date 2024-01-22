@@ -8,7 +8,6 @@ import {
     SignUpButton,
     SignedIn,
     SignedOut,
-    UserButton,
 } from "@clerk/clerk-react";
 import Footer from "../components/Footer";
 
@@ -28,7 +27,7 @@ const genres = [
 ];
 
 export default function Dashboard() {
-    const [currentlyReading, setCurrentlyReading] = useState<Book[]>([]);
+    const [currentlyReading, setCurrentlyReading] = useState<BookType[]>([]);
     useEffect(() => {
         const getBooks = async () => {
             const apiLink =
@@ -48,35 +47,37 @@ export default function Dashboard() {
             <SignedOut>
                 <div id="signedOutHome">
                     <div className="main-content">
-                        <div className="promo">
-                            <img
-                                src="/book.png"
-                                alt=""
-                                className="headerImage"
-                            />
-                            <h1>
-                                Find Your Next Great <span>Read.</span>
-                            </h1>
-                            <p className="description">
-                                You&apos;re in the right place. Tell us what
-                                titles or genres you&apos;ve enjoyed in the
-                                past, and we&apos;ll give you surprisingly
-                                insightful recommendations.
-                            </p>
-                        </div>
-                        <div className="auth-container">
-                            <SignIn afterSignUpUrl="/new-user" />
+                        <div className="hero-section">
+                            <div className="promo">
+                                <img
+                                    src="/book.png"
+                                    alt=""
+                                    className="headerImage"
+                                />
+                                <h1>
+                                    Find Your Next Great <span>Read.</span>
+                                </h1>
+                                <p className="description">
+                                    You&apos;re in the right place. Tell us what
+                                    titles or genres you&apos;ve enjoyed in the
+                                    past, and we&apos;ll give you surprisingly
+                                    insightful recommendations.
+                                </p>
+                            </div>
+                            <div className="auth-container">
+                                <SignIn afterSignUpUrl="/new-user" />
 
-                            <div className="authButtons">
-                                <SignUpButton
-                                    afterSignInUrl="/"
-                                    afterSignUpUrl="/new-user"
-                                />
-                                <p>Already a member?</p>{" "}
-                                <SignInButton
-                                    afterSignInUrl="/"
-                                    afterSignUpUrl="/new-user"
-                                />
+                                <div className="authButtons">
+                                    <SignUpButton
+                                        afterSignInUrl="/"
+                                        afterSignUpUrl="/new-user"
+                                    />
+                                    <p>Already a member?</p>{" "}
+                                    <SignInButton
+                                        afterSignInUrl="/"
+                                        afterSignUpUrl="/new-user"
+                                    />
+                                </div>
                             </div>
                         </div>
                         <aside>

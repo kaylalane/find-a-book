@@ -1,10 +1,10 @@
 // Type definitions for global variables
-type Account = {
+type AccountType = {
     _id: string;
     userId: string;
 };
 
-type User = {
+type UserType = {
     _id: string;
     name: string;
     email: string;
@@ -14,19 +14,20 @@ type User = {
     refreshToken: string;
 };
 
-type Author = {
+type AuthorType = {
     _id: string;
     name: string;
     bio: string;
     profileImg?: string;
 };
 
-type Book = {
+type BookType = {
     _id: string;
     ISBN: string;
     title: string;
     publishedAt: string;
 
+    rating?: number;
     description: string;
     cover: string;
     price: number;
@@ -36,7 +37,7 @@ type Book = {
     authorId: string;
 };
 
-type Book_Review = {
+type Book_ReviewType = {
     _id: string;
     review: string;
     createdAt: string;
@@ -58,7 +59,15 @@ type CommentType = {
     createdAt: string;
     updatedAt: string;
 
-    userName: string;
+    username: string;
     reviewId: string;
+    userId: string;
+};
+
+type ShelfType = {
+    _id: string;
+    name: string;
+    description: string;
+    books: BookType[];
     userId: string;
 };

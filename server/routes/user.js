@@ -5,7 +5,6 @@ import {
     hashPassword,
 } from "../auth.js";
 import jwt from "jsonwebtoken";
-import { hash, compare, genSalt } from "bcrypt";
 import db from "../db/conn.js";
 
 const { sign, verify } = jwt;
@@ -16,9 +15,9 @@ router.get("/auth", authenticateToken, async (req, res) => {
     return res.send(req.user);
 });
 
-router.get("/:id", authenticateToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
     let userCollection = await db.collection("User");
-    let userExists = await userCollection.findOne({ username: req.params.id });
+    let userExists = await userCollection.findOne({ clerkId: req.params.id });
 
     if (userExists) {
         res.status(200).send(userExists);
@@ -67,6 +66,8 @@ router.post("/", async (req, res) => {
                 email: email,
                 clerkId: clerkId,
                 isAdmin: false,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
             };
             const user = await userCollection.insertOne(u);
 

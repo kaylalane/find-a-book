@@ -7,7 +7,7 @@ export default function RequireAuth({
 }: {
     children: React.ReactNode;
 }) {
-    const [user, setUser] = useState<User | undefined>();
+    const [user, setUser] = useState<UserType | undefined>();
     const params = useParams();
     const navigate = useNavigate();
 

@@ -23,4 +23,20 @@ router.get("/:id", async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+router.post("/", async (req, res) => {
+    try {
+        const authorCollection = db.collection("Author");
+        const { name, bio, birthDate } = req.body;
+        const newAuthor = await authorCollection.insertOne({
+            name: name,
+            bio: bio,
+            birthDate: birthDate,
+        });
+        res.send(newAuthor).status(200);
+    } catch (e) {
+        console.error("Can't get author", e);
+        res.sendStatus(500);
+    }
+});
 export default router;

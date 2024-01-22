@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import BookCard from "../components/BookCard";
 
 export default function AuthorPage() {
-    const [author, setAuthor] = useState<Author | undefined>();
-    const [books, setBooks] = useState<Book[]>();
+    const [author, setAuthor] = useState<AuthorType | undefined>();
+    const [books, setBooks] = useState<BookType[]>();
 
     const pathname = useParams();
     useEffect(() => {

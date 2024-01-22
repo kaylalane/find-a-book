@@ -10,16 +10,31 @@ Content-Type: application/application/json
 
 ###
 
-GET http://localhost:3000/api/user/kaylalane
-Content-Type: application/application/json
+POST http://localhost:3000/api/author
+Content-Type: application/json
+
+{
+    "name": "Rin Chupeco",
+    "bio": "Rin Chupeco is a nonbinary Chinese Filipino writer born and raised in the Philippines. They are the author of several speculative young adult series, including The Bone Witch, The Girl from the Well, The Never-Tilting World, and Wicked as You Wish. Formerly a graphic designer and technical writer, they now write fiction full-time and live with their partner and two children in Manila. They can be found on Twitter and Instagram at @RinChupeco."
+}
 
 
 ###
 
-POST http://localhost:3000/api/user/login
-Content-Type: application/application/json
+POST http://localhost:3000/api/books
+Content-Type: application/json
 
 {
-    "username": "kaylalane",
-    "password": "password",
+    "title": "A Court of Mist and Fury",
+    "authorName": "Sarah J. Maas",
+    "authorId": "65ade3284f895c40219d8cfc",
+    "genres": ["Fantasy", "Young Adult", "Fiction", "Fairies", "Romance"],
+    "cover": "https://covers.openlibrary.org/b/isbn/9781982195717-L.jpg",
+    "description": "Feyre has undergone more trials than one human woman can carry in her heart. Though she's now been granted the powers and lifespan of the High Fae, she is haunted by her time Under the Mountain and the terrible deeds she performed to save the lives of Tamlin and his people.\r\n\r\nAs her marriage to Tamlin approaches, Feyre's hollowness and nightmares consume her. She finds herself split into two different people: one who upholds her bargain with Rhysand, High Lord of the feared Night Court, and one who lives out her life in the Spring Court with Tamlin. While Feyre navigates a dark web of politics, passion, and dazzling power, a greater evil looms. She might just be the key to stopping it, but only if she can harness her harrowing gifts, heal her fractured soul, and decide how she wishes to shape her future-and the future of a world in turmoil.\r\n\r\nBestselling author Sarah J. Maas's masterful storytelling brings this second book in her dazzling, sexy, action-packed series to new heights.",
+    "pages": 640,
+    "rating": 4.5,
+    "ISBN": "9781619634466",
+    "publishedAt": "May 20",
+    "seriesId": "65ade3284f895c40219d8cfc",
+    
 }

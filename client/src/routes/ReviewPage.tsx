@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import "../styles/reviews.scss";
 
 export default function ReviewPage() {
-    const [book, setBook] = useState<Book | undefined>();
+    const [book, setBook] = useState<BookType | undefined>();
     const pathname = useParams();
     useEffect(() => {
         const getBook = async () => {

@@ -9,12 +9,6 @@
     gap: 1rem;
     margin: 1rem;
 
-    .book-page__cover-container {
-        display: flex;
-        justify-content: center;
-        padding: 20px 0;
-    }
-
     .book-page__title {
         font-size: 30px;
         font-weight: bold;
@@ -23,27 +17,51 @@
         margin-bottom: 20px;
     }
 }
+
+.book-page__cover-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.book-page__review {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.review-card {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background-color: rgba(var(--primary), 0.25);
+
+    .review-card__author {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+}
 @media (min-width: 576px) {
     .book-page {
         display: grid;
-        grid-template-areas:
-            "cover info"
-            "reviews reviews";
+        grid-template-areas: "cover info";
         grid-template-columns: 250px 1fr;
         margin: 0 1rem;
     }
     .book-page__cover-container {
         display: block;
+        grid-area: cover;
     }
-    
+
     .book-page__cover {
         max-width: 250px;
-        grid-area: "cover";
     }
 
     .book-page__information {
+        height: calc(100vh - 120px);
+        overflow-y: scroll;
         padding: 20px;
-        grid-area: "info";
+        grid-area: info;
+        scrollbar-width: none;
     }
 
     .book-page__reviews {

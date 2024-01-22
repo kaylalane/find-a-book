@@ -41,6 +41,11 @@ p {
     display: none;
 }
 
+.no-scroll {
+    height: calc(100vh - 120px);
+    overflow: hidden;
+}
+
 //GENERAL STYLES ENDS
 
 // NAVIGATION STARTS
@@ -51,6 +56,7 @@ header {
 }
 
 nav {
+    height: 60px;
     display: flex;
     gap: 1rem;
     padding: 1rem;
@@ -58,6 +64,7 @@ nav {
 }
 
 menu {
+    height: 60px;
     margin: 0;
     display: flex;
     align-items: center;
@@ -85,7 +92,7 @@ menu {
 }
 .menubar__content {
     background-color: rgb(var(--background));
-    filter: drop-shadow(0 0 0.3rem rgba(var(--text), 0.1))
+    filter: drop-shadow(0 0 0.3rem rgba(var(--text), 0.1));
 }
 
 .menubar__item {
@@ -140,6 +147,14 @@ menu {
     background-color: rgba(var(--accent), 1);
 }
 
+.user-image {
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+    border-radius: 50%;
+}
+
 .dropdown-container {
     position: relative;
     margin-right: 10px;
@@ -151,12 +166,33 @@ menu {
         padding: 0.5rem 1rem;
         cursor: pointer;
         font-size: small;
-        border-radius: var(--border-radius);
+
         &:hover {
             text-decoration: underline;
             outline: none;
             background-color: rgba(var(--text), 0.1);
         }
+
+        button {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            font-size: small;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .dropdown__item:first-of-type {
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+    }
+
+    .dropdown__item:last-of-type {
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
     }
 }
 
@@ -196,6 +232,18 @@ menu {
     font-size: 25px;
     font-weight: bold;
 }
+
+//RECOMMENDATIONS STARTS
+
+.recommendations__list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1rem;
+    list-style-type: none;
+}
+
+//RECOMMENDATIONS ENDS
 
 //HOME PAGE STARTS
 
@@ -395,6 +443,23 @@ menu {
     .comment__author {
         font-weight: bold;
     }
+
+    .comment__div {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 0.5rem;
+    }
+
+    .comment__delete {
+        padding: 0;
+        color: rgb(var(--accent));
+        text-decoration: underline;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
 }
 
 .currently-reading__container {
@@ -412,7 +477,7 @@ menu {
     row-gap: 1rem;
 }
 
-.review-card {
+.feed-item-card {
     display: flex;
     gap: 4px;
     flex-flow: column wrap;
@@ -421,7 +486,7 @@ menu {
     padding: 1rem;
     border-radius: var(--border-radius);
 
-    .review-card__header {
+    .feed-item-card__header {
         display: grid;
         grid-template-columns: 1fr 100px;
         align-items: center;
@@ -432,12 +497,12 @@ menu {
         text-overflow: ellipsis;
     }
 
-    .review-card__title {
+    .feed-item-card__title {
         font-weight: bold;
         text-decoration: underline;
     }
 
-    .review-card__rating {
+    .feed-item-card__rating {
         display: flex;
         gap: 5px;
         align-items: center;
@@ -445,7 +510,7 @@ menu {
         color: rgba(var(--text), 0.5);
     }
 
-    .review-card__like-information {
+    .feed-item-card__like-information {
         margin: 0.5rem 0;
         padding: 0.5rem 0;
         border-top: 1px solid rgba(var(--text), 0.5);
@@ -501,14 +566,21 @@ footer ul {
         display: grid;
         align-items: center;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 2fr;
+        grid-template-rows: 1fr;
 
         .headerImage {
             display: none;
         }
-        .promo {
+
+        .hero-section {
             grid-row: 1;
-            grid-column: 1 / span 2;
+            grid-column: 1 / span 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 1rem;
+        }
+        .promo {
             display: flex;
             flex-flow: column nowrap;
             justify-content: center;

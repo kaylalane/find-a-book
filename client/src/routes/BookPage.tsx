@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/book-page.scss";
 import Layout from "../components/Layout";
+import ReviewsContainer from "../components/ReviewsContainer";
+import { useClerk } from "@clerk/clerk-react";
+import NewReviewStars from "../components/NewReviewStars";
 
 export default function BookPage() {
-    const [book, setBook] = useState<Book | undefined>();
+    const { user } = useClerk();
+    const [book, setBook] = useState<BookType | undefined>();
     const pathname = useParams();
     useEffect(() => {
         const getBook = async () => {
@@ -25,10 +29,10 @@ export default function BookPage() {
         };
 
         getBook();
-    }, []);
+    }, [pathname]);
 
     return (
-        <Layout>
+        <Layout className="no-scroll">
             <div className="book-page">
                 <div className="book-page__cover-container">
                     <img
@@ -50,15 +54,20 @@ export default function BookPage() {
                     ) : (
                         <p>There&apos;s no book description</p>
                     )}
-                </div>
-                <div>
-                    <h2 className="heading">Book Reviews</h2>
-                    <a
-                        href={`/review/${book?._id || ""}`}
-                        className="btn btn-primary"
-                    >
-                        Create a Review
-                    </a>
+                    <h2 className="heading">Ratings & Reviews</h2>
+                    <div className="book-page__review">
+                        <p>What do you think?</p>
+                        <img src={user?.imageUrl} className="user-image" />
+                        {book && <NewReviewStars book={book}/>}
+                        <a
+                            href={`/review/${book?._id || ""}`}
+                            className="btn btn-primary"
+                        >
+                            Create a Review
+                        </a>
+                    </div>
+
+                    <ReviewsContainer />
                 </div>
             </div>
         </Layout>

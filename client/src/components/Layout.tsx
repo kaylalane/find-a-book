@@ -1,10 +1,16 @@
 import Navbar from "./Navbar";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+    children,
+    className,
+}: {
+    children: React.ReactNode;
+    className?: string;
+}) {
     return (
         <>
             <Navbar />
-            <main>{children}</main>
+            <main className={className}>{children}</main>
         </>
     );
 }

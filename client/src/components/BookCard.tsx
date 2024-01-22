@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-export default function BookCard({ book }: { book: Book }) {
+export default function BookCard({ book }: { book: BookType }) {
     return (
         <div className="book-card">
             <Suspense fallback={"loading"}>

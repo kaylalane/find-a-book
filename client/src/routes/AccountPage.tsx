@@ -18,9 +18,14 @@ export default function AccountPage() {
                     <table className="account__table">
                         <thead>
                             <tr>
-                                <th colSpan="2">
+                                <th colSpan={2}>
                                     {user?.username}{" "}
-                                    <a href="/user/edit" className="edit-button">(edit profile)</a>
+                                    <a
+                                        href="/user/edit"
+                                        className="edit-button"
+                                    >
+                                        (edit profile)
+                                    </a>
                                 </th>
                             </tr>
                         </thead>

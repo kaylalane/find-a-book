@@ -8,6 +8,7 @@ import authors from "./routes/author.js";
 import users from "./routes/user.js";
 import { fileURLToPath } from "url";
 import jwt from "jsonwebtoken";
+import { createAuthorResource } from "./db/resource.js";
 
 const { sign, verify } = jwt;
 
@@ -21,7 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, "../client/dist")));
-app.use(express.static(path.join(__dirname, "../client/public")));
 
 app.use("/api/books/", books);
 app.use("/api/reviews/", reviews);
@@ -29,10 +29,11 @@ app.use("/api/comments/", comments);
 app.use("/api/user/", users);
 app.use("/api/author/", authors);
 
-app.get("/", (req, res) => {
+//
+app.get("*", (req, res) => {
     res.sendFile(path.resolve("../client/dist/index.html"));
 });
 
 app.listen(PORT, () => {
-    console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+    console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
