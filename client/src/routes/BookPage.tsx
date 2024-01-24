@@ -1,45 +1,38 @@
-import { useEffect, useState } from "react";
+import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/book-page.scss";
-import Layout from "../components/Layout";
 import ReviewsContainer from "../components/ReviewsContainer";
 import { useClerk } from "@clerk/clerk-react";
 import NewReviewStars from "../components/NewReviewStars";
+import { fetchBookById } from "../lib/queryFunctions";
+import { useQuery } from "@tanstack/react-query";
+import BookPageSkeleton from "../components/skeletons/BookPageSkeleton";
 
 export default function BookPage() {
     const { user } = useClerk();
-    const [book, setBook] = useState<BookType | undefined>();
-    const pathname = useParams();
-    useEffect(() => {
-        const getBook = async () => {
-            const apiLink =
-                process.env.NODE_ENV === "production"
-                    ? `/api/books/${pathname.id}`
-                    : `http://localhost:3000/api/books/${pathname.id}`;
+    const params = useParams();
 
-            fetch(apiLink, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }).then(async (res) => {
-                const data = await res.json();
-                setBook(data);
-            });
-        };
+    const results = useQuery({
+        queryKey: ["book", params.id || ""],
+        queryFn: fetchBookById,
+    });
 
-        getBook();
-    }, [pathname]);
+    if (results.isLoading) {
+        return <BookPageSkeleton />;
+    }
+    const book = results.data;
 
     return (
-        <Layout className="no-scroll">
+        <>
             <div className="book-page">
                 <div className="book-page__cover-container">
-                    <img
-                        src={book?.cover || ""}
-                        alt={`${book?.title} cover`}
-                        className="book-page__cover"
-                    />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <img
+                            src={book?.cover || ""}
+                            alt={`${book?.title} cover`}
+                            className="book-page__cover"
+                        />
+                    </Suspense>
                 </div>
                 <div className="book-page__information">
                     <h1 className="book-page__title">{book?.title}</h1>
@@ -58,7 +51,7 @@ export default function BookPage() {
                     <div className="book-page__review">
                         <p>What do you think?</p>
                         <img src={user?.imageUrl} className="user-image" />
-                        {book && <NewReviewStars book={book}/>}
+                        {book && <NewReviewStars book={book} />}
                         <a
                             href={`/review/${book?._id || ""}`}
                             className="btn btn-primary"
@@ -70,6 +63,6 @@ export default function BookPage() {
                     <ReviewsContainer />
                 </div>
             </div>
-        </Layout>
+        </>
     );
 }

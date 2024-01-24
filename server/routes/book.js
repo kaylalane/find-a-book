@@ -42,18 +42,18 @@ router.post("/", async (req, res) => {
             genres,
             pages,
         } = req.body;
-     
+
         const newBook = await bookCollection.insertOne({
             title: title,
             authorName: authorName,
             authorId: authorId,
             ISBN: ISBN,
-            price: price,
+            price: price || null,
             publishedAt: publishedAt,
             description: description,
             genres: genres,
             cover: cover,
-            pages: pages,
+            pages: pages || null,
         });
         res.send(newBook).status(200);
     } catch (e) {

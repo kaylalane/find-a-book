@@ -48,6 +48,12 @@ p {
 
 //GENERAL STYLES ENDS
 
+
+
+.visible {
+    display: block;
+}
+
 // NAVIGATION STARTS
 
 header {
@@ -71,9 +77,10 @@ menu {
     justify-content: center;
     border-bottom: 1px solid rgba(var(--text), 0.1);
 
-    a {
+    .menu-item {
         padding: 1rem;
         font-size: 18px;
+        transition: background-color 0.2s ease-in-out;
     }
 
     .menubar__trigger {
@@ -83,6 +90,7 @@ menu {
         font-size: 18px;
         border: none;
         background-color: transparent;
+        transition: background-color 0.2s ease-in-out;
 
         &[data-highlighted],
         &[data-state="open"] {
@@ -97,6 +105,15 @@ menu {
 
 .menubar__item {
     padding: 0.5rem 1rem;
+
+    &:hover {
+        background-color: rgba(var(--text), 0.1);
+    }
+}
+
+.menu-item:hover,
+.menubar__trigger:hover {
+    background-color: rgb(var(--accent));
 }
 
 .logo {
@@ -200,6 +217,10 @@ menu {
     border-top: 1px solid rgb(var(--text), 0.5);
 }
 
+.separator--margin {
+    margin: 0.5rem 0;
+}
+
 //NAVIAGTION ENDS
 
 .btn {
@@ -233,7 +254,20 @@ menu {
     font-weight: bold;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
+.book-cover--small {
+    height: 150px;
+    width: auto;
+}
+
 //RECOMMENDATIONS STARTS
+
+.recommendations-page {
+    padding: 1rem;
+}
 
 .recommendations__list {
     display: flex;
@@ -243,7 +277,89 @@ menu {
     list-style-type: none;
 }
 
+.book-row-container {
+    overflow: hidden;
+}
+
+.book-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
 //RECOMMENDATIONS ENDS
+
+//REVIEW PAGE STARTS
+
+.review-page {
+    padding: 0 1rem;
+}
+
+.review-page-information {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.review-form {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.review-form-label {
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+}
+
+.review-input {
+    padding: 10px;
+    width: 100%;
+}
+
+//REVIEW PAGE ENDS
+
+//AUTHOR PAGE STARTS
+
+.author-page {
+    padding: 0 1rem;
+}
+
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+}
+
+.book-table__author {
+    font-size: 12pt;
+    font-weight: 700;
+}
+
+.book-table td {
+    vertical-align: top;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 5px;
+}
+
+.mini-ratings {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 10pt;
+}
+
+.rate-button-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+    align-items: center;
+}
+
+//AUTHOR PAGE ENDS
 
 //HOME PAGE STARTS
 
@@ -424,12 +540,20 @@ menu {
     .book-card__author {
         text-decoration: underline;
     }
+}
+.book-card__cover {
+    height: 150px;
+    width: 100%;
+    flex-basis: 50%;
+}
 
-    .book-card__cover {
-        height: 150px;
-        width: 100%;
-        flex-basis: 50%;
-    }
+.book-card__cover--small {
+    height: 100px;
+    width: auto;
+}
+
+.book-card__cover--large {
+    height: 200px;
 }
 
 .comment {

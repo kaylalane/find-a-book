@@ -1,0 +1,66 @@
+.book-page-skeleton {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 250px 1fr;
+    margin: 1rem;
+}
+
+.book-page-image {
+    width: 250px;
+    height: 350px;
+    padding: 20px;
+    background: #ccc;
+}
+
+.book-page-skeleton-content {
+    padding: 20px;
+}
+
+.title-text-block {
+    height: 40px;
+    width: 50%;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+    background: #ccc;
+    border-radius: var(--border-radius);
+}
+
+.sub-title-text-block {
+    height: 30px;
+    width: 50%;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+    background: #ccc;
+    border-radius: var(--border-radius);
+}
+
+.small-text-block {
+    height: 20px;
+    width: 20%;
+    margin-bottom: 20px;
+    background: #ccc;
+    border-radius: var(--border-radius);
+}
+
+.large-text-block {
+    height: 150px;
+    width: 100%;
+    margin-bottom: 10px;
+    background: #ccc;
+    border-radius: var(--border-radius);
+}
+
+.avatar-skeleton {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #ccc;
+}
+
+.centered-div {
+    display: flex;
+    gap: 1rem;
+    flex-flow: column;
+    align-items: center;
+}

@@ -4,27 +4,17 @@ import CommentCard from "./CommentCard";
 import CreateComment from "./CreateComment";
 import { useState, useEffect } from "react";
 import "../styles/reviews.scss";
+import { useQuery } from "@tanstack/react-query";
+import { fetchBookById } from "../lib/queryFunctions";
 
 export default function FeedItemCard({ review }: { review: Book_ReviewType }) {
-    const [book, setBook] = useState<BookType>();
+    const bookReq = useQuery({
+        queryKey: ["books", review.bookId],
+        queryFn: fetchBookById,
+    });
     const [comments, setComments] = useState<CommentType[]>([]);
 
     useEffect(() => {
-        async function fetchBook() {
-            const apiLink =
-                process.env.NODE_ENV === "production"
-                    ? `/api/books/${review.bookId}`
-                    : `http://localhost:3000/api/books/${review.bookId}`;
-            const req = await fetch(apiLink, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            const book = await req.json();
-            setBook(book);
-        }
         async function fetchComments() {
             const apiLink =
                 process.env.NODE_ENV === "production"
@@ -39,9 +29,14 @@ export default function FeedItemCard({ review }: { review: Book_ReviewType }) {
 
             setComments(await req.json());
         }
-        fetchBook();
         fetchComments();
     }, [review]);
+
+    if (bookReq.isLoading) {
+        return <div>Loading...</div>;
+    }
+    const book = bookReq.data;
+    
     return (
         <div className="feed-item-card">
             <div className="feed-item-card__header">
@@ -54,12 +49,12 @@ export default function FeedItemCard({ review }: { review: Book_ReviewType }) {
                         {review.bookName}
                     </a>
                 </p>
-                {review.overall_rating && (
+                {review.overallRating && (
                     <div className="feed-item-card__rating">
                         <span className="sr-only">
-                            {review.overall_rating} out of 5 stars
+                            {review.overallRating} out of 5 stars
                         </span>
-                        <ReviewStars rating={review.overall_rating} />
+                        <ReviewStars rating={review.overallRating} />
                     </div>
                 )}
             </div>

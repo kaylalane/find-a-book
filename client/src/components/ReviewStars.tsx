@@ -8,7 +8,7 @@ export default function ReviewStars({ rating }: { rating: number }) {
                 return (
                     <div
                         className={clsx(
-                            "  star--small",
+                            "  star star--small",
                             idx <= rating && "star--selected"
                         )}
                         key={idx}

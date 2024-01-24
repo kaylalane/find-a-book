@@ -1,49 +1,29 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BookCard from "../components/BookCard";
+import Layout from "../components/Layout";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAuthorById } from "../lib/queryFunctions";
+import BookTable from "../components/BookTable";
 
 export default function AuthorPage() {
-    const [author, setAuthor] = useState<AuthorType | undefined>();
-    const [books, setBooks] = useState<BookType[]>();
+    const params = useParams();
+    const results = useQuery({
+        queryKey: ["author", params.id || ""],
+        queryFn: fetchAuthorById,
+    });
 
-    const pathname = useParams();
-    useEffect(() => {
-        const getAuthor = async () => {
-            const apiLink =
-                process.env.NODE_ENV === "production"
-                    ? `/api/author/${pathname.id}`
-                    : `http://localhost:3000/api/author/${pathname.id}`;
+    if (results.isLoading) {
+        return <div>Loading...</div>;
+    }
 
-            fetch(apiLink, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }).then(async (res) => {
-                const data = await res.json();
-                setAuthor(data.author);
-                setBooks(data.books);
-            });
-        };
+    const author = results.data.author;
+    const books = results.data.books;
 
-        getAuthor();
-    }, []);
     return (
-        <>
-            {author && (
-                <div>
-                    {author.name}{" "}
-                    <div>
-                        {books && (
-                            <div>
-                                {books.map((book) => (
-                                    <BookCard book={book} key={book._id} />
-                                ))}
-                            </div>
-                        )}
-                    </div>{" "}
-                </div>
-            )}
-        </>
+        <Layout className="author-page">
+            <h1>{author?.name}</h1>
+            {author.bio && <p> {author.bio}</p>}
+            <p>{author?.name}'s Books</p>
+            <BookTable books={books} />
+        </Layout>
     );
 }

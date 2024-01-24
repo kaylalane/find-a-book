@@ -1,41 +1,24 @@
 import { useUser } from "@clerk/clerk-react";
-import { useState } from "react";
-import { getUserFromClerkId } from "../lib/auth";
+import { fetchAllUserComments } from "../lib/queryFunctions";
+import { useQuery } from "@tanstack/react-query";
 
 export default function CommentsPage() {
     const { user } = useUser();
-    const [comments, setComments] = useState<CommentType[]>([]);
-
-    useState(() => {
-        const getComments = async () => {
-            console.log(user?.id);
-            const userId = await getUserFromClerkId(user?.id || "");
-            const apiLink =
-                process.env.NODE_ENV === "production"
-                    ? `/api/user/comments/${userId}`
-                    : `http://localhost:3000/api/comments/user/${userId}`;
-            try {
-                const res = await fetch(apiLink, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                const data = await res.json();
-                setComments(data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-
-        getComments();
+    const results = useQuery({
+        queryKey: ["comments", user?.id || ""],
+        queryFn: fetchAllUserComments,
     });
+
+    if (results.isLoading) {
+        return <div>Loading...</div>;
+    }
+    const comments = results.data;
 
     return (
         <>
             <h1>My Recent Posts</h1>
             <div>
-                {comments.map((comment) => (
+                {comments.map((comment: CommentType) => (
                     <div key={comment._id}>
                         <p>{comment.comment}</p>
                     </div>

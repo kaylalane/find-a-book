@@ -1,6 +1,8 @@
 import { FormEvent, useState } from "react";
 import Button from "./ui/Button";
 import clsx from "clsx";
+import { useClerk } from "@clerk/clerk-react";
+import { getUserFromClerkId } from "../lib/auth";
 
 const initialState = {
     review: "Write your review. (Optional)",
@@ -9,12 +11,14 @@ const initialState = {
 
 export default function CreateReview({ book }: { book: BookType }) {
     const TOTAL_STARS = 5;
+    const { user } = useClerk();
     const [review, setReview] = useState(initialState);
     const [rating, setRating] = useState(-1);
 
     const handleReview = async (e: FormEvent) => {
         e.preventDefault();
         try {
+            const userId = await getUserFromClerkId(user?.id || "");
             const req = await fetch(`/api/review/${book._id}`, {
                 method: "POST",
                 headers: {
@@ -26,7 +30,7 @@ export default function CreateReview({ book }: { book: BookType }) {
                     bookId: book._id,
                     authorId: book.authorId,
                     authorName: book.authorName,
-                    userId: "657bd9cb20694bcc71eea5e7",
+                    userId: userId,
                 }),
             });
             const res = await req.json();
@@ -57,16 +61,17 @@ export default function CreateReview({ book }: { book: BookType }) {
                     );
                 })}
             </div>
+            <div className="separator separator--margin"></div>
             <form
                 action=""
-                className=" flex flex-col border-t border-slate-600 "
+                className="review-form"
             >
-                <label htmlFor="">
+                <label className="review-form-label">
                     <p className=" my-2">What did you think?</p>
                     <textarea
                         name=""
                         id=""
-                        className=" w-full rounded-sm mb-4 max-w-lg"
+                        className="review-input"
                         value={review.review}
                         onChange={(e) =>
                             setReview({ ...review, review: e.target.value })

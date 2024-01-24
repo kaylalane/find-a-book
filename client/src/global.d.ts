@@ -25,13 +25,14 @@ type BookType = {
     _id: string;
     ISBN: string;
     title: string;
-    publishedAt: string;
+    publishedAt: Date;
 
-    rating?: number;
+    overallRating: number;
+    numberOfReviews: number;
     description: string;
     cover: string;
     price: number;
-    genre: string[];
+    genres: string[];
     pages?: number;
     authorName: string;
     authorId: string;
@@ -43,7 +44,7 @@ type Book_ReviewType = {
     createdAt: string;
     updatedAt: string;
 
-    overall_rating: number;
+    overallRating: number;
 
     bookId: string;
     bookName: string;

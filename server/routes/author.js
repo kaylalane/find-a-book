@@ -13,7 +13,7 @@ router.get("/:id", async (req, res) => {
         });
         const books = await bookCollection
             .find({
-                authorId: author._id.toString(),
+                authorId: author._id,
             })
             .toArray();
 
@@ -30,8 +30,8 @@ router.post("/", async (req, res) => {
         const { name, bio, birthDate } = req.body;
         const newAuthor = await authorCollection.insertOne({
             name: name,
-            bio: bio,
-            birthDate: birthDate,
+            bio: bio || null,
+            birthDate: birthDate || null,
         });
         res.send(newAuthor).status(200);
     } catch (e) {

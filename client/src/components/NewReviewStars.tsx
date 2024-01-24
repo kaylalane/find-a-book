@@ -1,10 +1,15 @@
 import clsx from "clsx";
-import Button from "./ui/Button";
 import { useState } from "react";
 import { getUserFromClerkId } from "../lib/auth";
 import { useClerk } from "@clerk/clerk-react";
 
-export default function NewReviewStars({book}: {book: BookType}) {
+export default function NewReviewStars({
+    book,
+    size,
+}: {
+    book: BookType;
+    size?: "small" | "large";
+}) {
     const [rating, setRating] = useState(-1);
     const { user } = useClerk();
     const createReview = async () => {
@@ -32,15 +37,15 @@ export default function NewReviewStars({book}: {book: BookType}) {
     };
 
     return (
-        <div className=" my-1 book-page__stars">
+        <div className=" my-1 star-container">
             {[...new Array(5)].map((_arr, idx) => {
                 return (
-                    <Button
+                    <button
                         className={clsx(
-                            "btn star ",
+                            "",
+                            size === "small" && "star--small",
                             idx <= rating && "star--selected"
                         )}
-                        intent={"text"}
                         key={idx}
                         onClick={() => {
                             setRating(idx);
@@ -50,7 +55,7 @@ export default function NewReviewStars({book}: {book: BookType}) {
                         <span className="sr-only">
                             {idx + 1} out of 5 stars
                         </span>
-                    </Button>
+                    </button>
                 );
             })}
         </div>

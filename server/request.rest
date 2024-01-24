@@ -14,8 +14,16 @@ POST http://localhost:3000/api/author
 Content-Type: application/json
 
 {
-    "name": "Rin Chupeco",
-    "bio": "Rin Chupeco is a nonbinary Chinese Filipino writer born and raised in the Philippines. They are the author of several speculative young adult series, including The Bone Witch, The Girl from the Well, The Never-Tilting World, and Wicked as You Wish. Formerly a graphic designer and technical writer, they now write fiction full-time and live with their partner and two children in Manila. They can be found on Twitter and Instagram at @RinChupeco."
+    "name": "TJ Klune"
+}
+
+###
+
+POST http://localhost:3000/api/author
+Content-Type: application/json
+
+{
+    "name": "TJ Klune"
 }
 
 
@@ -25,16 +33,15 @@ POST http://localhost:3000/api/books
 Content-Type: application/json
 
 {
-    "title": "A Court of Mist and Fury",
-    "authorName": "Sarah J. Maas",
-    "authorId": "65ade3284f895c40219d8cfc",
-    "genres": ["Fantasy", "Young Adult", "Fiction", "Fairies", "Romance"],
-    "cover": "https://covers.openlibrary.org/b/isbn/9781982195717-L.jpg",
-    "description": "Feyre has undergone more trials than one human woman can carry in her heart. Though she's now been granted the powers and lifespan of the High Fae, she is haunted by her time Under the Mountain and the terrible deeds she performed to save the lives of Tamlin and his people.\r\n\r\nAs her marriage to Tamlin approaches, Feyre's hollowness and nightmares consume her. She finds herself split into two different people: one who upholds her bargain with Rhysand, High Lord of the feared Night Court, and one who lives out her life in the Spring Court with Tamlin. While Feyre navigates a dark web of politics, passion, and dazzling power, a greater evil looms. She might just be the key to stopping it, but only if she can harness her harrowing gifts, heal her fractured soul, and decide how she wishes to shape her future-and the future of a world in turmoil.\r\n\r\nBestselling author Sarah J. Maas's masterful storytelling brings this second book in her dazzling, sexy, action-packed series to new heights.",
-    "pages": 640,
-    "rating": 4.5,
-    "ISBN": "9781619634466",
-    "publishedAt": "May 20",
-    "seriesId": "65ade3284f895c40219d8cfc",
-    
+    "title": "Ravensong",
+    "authorName": "TJ Klune",
+    "authorId": "65aee3fb00a41c5cdba7c911",
+    "genres": ["Fantasy Romance", "LGBTQIA+", "Science Fiction", "Paranormal"],
+    "cover": "https://covers.openlibrary.org/b/isbn/9781250890344-L.jpg",
+    "description": "Gordo Livingstone never forgot the lessons carved into his skin. Hardened by the betrayal of a pack that left him behind, he sought solace in the garage in his tiny mountain town, vowing never again to involve himself in the affairs of wolves. <br> It should have been enough.It was, until the wolves came back, and with them, Mark Bennett. And when his town is caught in the jaws of a beast, Gordo is summoned back into the life that left him. <br> “Gordo, you must rise. For your pack. For us. I must ask you to become the witch to the wolves.” <br> Now, a year later, Gordo has once again found himself the witch of the Bennett pack. Green Creek has settled after the death of Richard Collins, and Gordo constantly struggles to ignore Mark and the song that howls between them. <br> But time is running out. Something is coming. And this time, it’s coming from within.",
+    "pages": 512,
+    "rating": 5,
+    "ISBN": "9781250890344",
+    "publishedAt": "August 1, 2023",
+    "seriesId": "65aee55f1c77436e7317ae7b"    
 }

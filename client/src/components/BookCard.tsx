@@ -1,6 +1,13 @@
+import clsx from "clsx";
 import { Suspense } from "react";
 
-export default function BookCard({ book }: { book: BookType }) {
+export default function BookCard({
+    book,
+    cover,
+}: {
+    book: BookType;
+    cover?: "small" | "large";
+}) {
     return (
         <div className="book-card">
             <Suspense fallback={"loading"}>
@@ -8,7 +15,10 @@ export default function BookCard({ book }: { book: BookType }) {
                     <img
                         src={book.cover || ""}
                         alt={`${book.title} cover`}
-                        className="book-card__cover"
+                        className={clsx(
+                            "book-card__cover",
+                            cover == "small" && "book-card__cover--small"
+                        )}
                     />
                 </a>
             </Suspense>

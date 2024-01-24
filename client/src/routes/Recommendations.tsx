@@ -1,36 +1,42 @@
-import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import BookCard from "../components/BookCard";
+import { fetchBooks } from "../lib/queryFunctions";
+import { useQuery } from "@tanstack/react-query";
+import VerticalBookCover from "../components/VerticalBookCover";
 
 export default function Recommendations() {
-    const [books, setBooks] = useState<BookType[]>([]);
-    useEffect(() => {
-        const getBooks = async () => {
-            const apiLink =
-                process.env.NODE_ENV === "production"
-                    ? `/api/books`
-                    : `http://localhost:3000/api/books`;
+    const results = useQuery({ queryKey: ["reviews"], queryFn: fetchBooks });
+    if (results.isLoading) {
+        return <div>Loading...</div>;
+    }
+    const books: BookType[] = results.data;
+    const fantastyBooks = books.filter((book: BookType) =>
+        book.genres.includes("Fantasy")
+    );
+    const romanceBooks = books.filter((book: BookType) =>
+        book.genres.includes("Romance")
+    );
+    console.log(books);
 
-            fetch(apiLink, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }).then(async (res) => {
-                const data = await res.json();
-                setBooks(data);
-            });
-        };
-
-        getBooks();
-    }, [books]);
     return (
-        <Layout>
+        <Layout className="recommendations-page">
             <h1>Recommendations</h1>
-            <div className="recommendations__list">
-                {books.map((book) => (
-                    <BookCard key={book._id} book={book} />
-                ))}
+            <h2>Fantasy</h2>
+
+            <div className="book-row-container">
+                <div className="book-row">
+                    {fantastyBooks.map((book: BookType) => (
+                        <VerticalBookCover key={book._id} book={book} />
+                    ))}
+                </div>
+            </div>
+            <h2>Romance</h2>
+
+            <div className="book-row-container">
+                <div className="book-row">
+                    {romanceBooks.map((book: BookType) => (
+                        <VerticalBookCover key={book._id} book={book} />
+                    ))}
+                </div>
             </div>
         </Layout>
     );
