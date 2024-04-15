@@ -33,6 +33,14 @@ export default function BookPage() {
                             className="book-page__cover"
                         />
                     </Suspense>
+                    <div className="default-list-buttons">
+                        <button className="default-list-buttons">
+                            Want to Read
+                        </button>
+                        <button className=" default-list-buttons">
+                            <img className="svg-icon" src="/chevron-down.svg" />
+                        </button>
+                    </div>
                 </div>
                 <div className="book-page__information">
                     <h1 className="book-page__title">{book?.title}</h1>

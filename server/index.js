@@ -6,9 +6,9 @@ import reviews from "./routes/review.js";
 import comments from "./routes/comment.js";
 import authors from "./routes/author.js";
 import users from "./routes/user.js";
+import shelves from "./routes/shelf.js";
 import { fileURLToPath } from "url";
 import jwt from "jsonwebtoken";
-import { createAuthorResource } from "./db/resource.js";
 
 const { sign, verify } = jwt;
 
@@ -23,11 +23,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.use("/api/books/", books);
-app.use("/api/reviews/", reviews);
-app.use("/api/comments/", comments);
+app.use("/api/book/", books);
+app.use("/api/review/", reviews);
+app.use("/api/comment/", comments);
 app.use("/api/user/", users);
 app.use("/api/author/", authors);
+app.use("/api/shelf", shelves);
 
 //
 app.get("*", (req, res) => {

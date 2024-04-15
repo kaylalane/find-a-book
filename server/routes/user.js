@@ -51,6 +51,7 @@ router.post("/", async (req, res) => {
 
     try {
         const userCollection = await db.collection("User");
+        const shelfCollection = await db.collection("Shelf");
 
         const usernameExists = await userCollection.findOne({
             username: username,
@@ -70,6 +71,22 @@ router.post("/", async (req, res) => {
                 updatedAt: new Date().toISOString(),
             };
             const user = await userCollection.insertOne(u);
+
+            await shelfCollection.insertOne({
+                userId: user.insertedId,
+                books: [],
+                name: "All",
+            });
+            await shelfCollection.insertOne({
+                userId: user.insertedId,
+                books: [],
+                name: "Currently Reading",
+            });
+            await shelfCollection.insertOne({
+                userId: user.insertedId,
+                books: [],
+                name: "Read",
+            });
 
             res.status(201);
             res.json(user);

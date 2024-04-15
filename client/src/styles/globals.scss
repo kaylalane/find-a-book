@@ -33,6 +33,16 @@ a {
     text-decoration: none;
 }
 
+.link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link--primary {
+    color: rgb(var(--primary));
+    stroke: rgb(var(--primary));
+}
+
 p {
     margin: 0;
 }
@@ -46,9 +56,17 @@ p {
     overflow: hidden;
 }
 
+.svg-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    color: white;
+    fill: white;
+    stroke: white;
+    overflow: hidden;
+}
+
 //GENERAL STYLES ENDS
-
-
 
 .visible {
     display: block;
@@ -239,14 +257,50 @@ menu {
     background-color: rgb(var(--secondary));
 }
 
+.btn--transparent {
+    padding: 1rem;
+    border: none;
+    color: rgb(var(--text));
+    background-color: transparent;
+}
+
 .btn--small {
     width: fit-content;
 }
 
+.btn--full {
+    width: 100%;
+}
+
+.default-list-buttons button {
+    background-color: rgb(var(--primary));
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    
+
+    &:first-of-type {
+        width: 80%;
+        font-size: 13px;
+        font-weight: 700;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+    &:last-of-type {
+        width: 18%;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    &:hover {
+        background-color: rgba(var(--primary), 0.8);
+    }
+}
+
 .page__title {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 10px;
+    font-size: 24px;
+    margin: 10px 0;
 }
 
 .heading {
@@ -258,6 +312,10 @@ menu {
     text-decoration: underline;
 }
 
+.text-right {
+    text-align: right;
+}
+
 .book-cover--small {
     height: 150px;
     width: auto;
@@ -267,6 +325,34 @@ menu {
 
 .recommendations-page {
     padding: 1rem;
+}
+
+.recommendations__section {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.recommendations__title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.recommendations__more-link {
+    text-align: right;
+    margin-top: 1rem;
+    font-size: 14px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    svg {
+        vertical-align: middle;
+        width: 1.2em;
+        height: 1.2em;
+    }
+
 }
 
 .recommendations__list {

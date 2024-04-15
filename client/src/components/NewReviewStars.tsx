@@ -3,13 +3,7 @@ import { useState } from "react";
 import { getUserFromClerkId } from "../lib/auth";
 import { useClerk } from "@clerk/clerk-react";
 
-export default function NewReviewStars({
-    book,
-    size,
-}: {
-    book: BookType;
-    size?: "small" | "large";
-}) {
+export default function NewReviewStars({ book }: { book: BookType }) {
     const [rating, setRating] = useState(-1);
     const { user } = useClerk();
     const createReview = async () => {
@@ -42,8 +36,7 @@ export default function NewReviewStars({
                 return (
                     <button
                         className={clsx(
-                            "",
-                            size === "small" && "star--small",
+                            "star--small",
                             idx <= rating && "star--selected"
                         )}
                         key={idx}

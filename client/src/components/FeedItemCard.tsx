@@ -18,8 +18,8 @@ export default function FeedItemCard({ review }: { review: Book_ReviewType }) {
         async function fetchComments() {
             const apiLink =
                 process.env.NODE_ENV === "production"
-                    ? `/api/comments/${review._id}`
-                    : `http://localhost:3000/api/comments/${review._id}`;
+                    ? `/api/comment/${review._id}`
+                    : `http://localhost:3000/api/comment/${review._id}`;
             const req = await fetch(apiLink, {
                 method: "GET",
                 headers: {
@@ -36,14 +36,14 @@ export default function FeedItemCard({ review }: { review: Book_ReviewType }) {
         return <div>Loading...</div>;
     }
     const book = bookReq.data;
-    
+
     return (
         <div className="feed-item-card">
             <div className="feed-item-card__header">
                 <p className=" ">
                     {review.userName} reviewed{" "}
                     <a
-                        href={`/books/${review.bookId}`}
+                        href={`/book/${review.bookId}`}
                         className=" feed-item-card__title"
                     >
                         {review.bookName}

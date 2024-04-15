@@ -61,4 +61,17 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+router.delete("/:id", async (req, res) => {
+    try {
+        const commentCollection = db.collection("Comment");
+        const result = await commentCollection.deleteOne({
+            _id: new ObjectId(req.params.id),
+        });
+        res.send(result).status(200);
+    } catch (e) {
+        console.log("Can't delete comment", e);
+        res.sendStatus(500);
+    }
+});
+
 export default router;

@@ -24,8 +24,8 @@ export default function ReviewComment({
         try {
             const apiLink =
                 process.env.NODE_ENV === "production"
-                    ? "/api/comments"
-                    : "http://localhost:3000/api/comments";
+                    ? "/api/comment"
+                    : "http://localhost:3000/api/comment";
             const newComment = await fetch(apiLink, {
                 method: "POST",
                 headers: {

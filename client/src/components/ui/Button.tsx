@@ -16,12 +16,7 @@ const ButtonVariants = cva(["btn"], {
                 "border-2",
                 "border-gray-800",
             ],
-            text: [
-                "text-white",
-                "dark:stroke-white",
-                "dark:fill-white",
-                "hover:bg-gray-100",
-            ],
+            text: ["btn--transparent"],
         },
         size: {
             small: ["text-md", "py-1", "px-4", "w-fit", "btn--small"],

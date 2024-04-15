@@ -19,25 +19,36 @@ export default function Recommendations() {
 
     return (
         <Layout className="recommendations-page">
-            <h1>Recommendations</h1>
-            <h2>Fantasy</h2>
+            <h1 className="page__title">Recommendations</h1>
 
-            <div className="book-row-container">
-                <div className="book-row">
+            <section className="recommendations__section">
+                <h2 className="recommendations__title">Fantasy</h2>
+
+                <div className="book-row-container">
+                    <div className="book-row">
                     {fantastyBooks.map((book: BookType) => (
-                        <VerticalBookCover key={book._id} book={book} />
-                    ))}
+                            <VerticalBookCover key={book._id} book={book} />
+                            ))}
+                     </div>
                 </div>
-            </div>
-            <h2>Romance</h2>
+                <a href="/recommendations/genre/fantasy" className="link--primary recommendations__more-link">
+                    More for this genre »
+                </a>
+            </section>
+            <section className="recommendations__section">
+                <h2>Romance</h2>
 
-            <div className="book-row-container">
-                <div className="book-row">
+                <div className="book-row-container">
+                    <div className="book-row">
                     {romanceBooks.map((book: BookType) => (
                         <VerticalBookCover key={book._id} book={book} />
                     ))}
+                    </div>
                 </div>
-            </div>
+                <a href="/recommendations/genre/romance" className="link--primary recommendations__more-link">
+                    More for this genre »
+                </a>
+            </section>
         </Layout>
     );
 }

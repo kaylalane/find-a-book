@@ -32,8 +32,8 @@ export default function Dashboard() {
         const getBooks = async () => {
             const apiLink =
                 process.env.NODE_ENV === "production"
-                    ? `/api/books`
-                    : `http://localhost:3000/api/books`;
+                    ? `/api/book`
+                    : `http://localhost:3000/api/book`;
             const res = await fetch(apiLink);
             const books = await res.json();
             setCurrentlyReading(books);

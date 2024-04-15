@@ -16,6 +16,7 @@ const BookPage = lazy(() => import("./routes/BookPage"));
 const ReviewPage = lazy(() => import("./routes/ReviewPage"));
 const CommentsPage = lazy(() => import("./routes/CommentsPage"));
 const Recommendations = lazy(() => import("./routes/Recommendations"));
+const GenrePage = lazy(() => import("./routes/GenrePage"));
 
 const router = createBrowserRouter([
     {
@@ -89,6 +90,11 @@ const router = createBrowserRouter([
         path: "/list",
         element: <MyBooks />,
     },
+    {
+        path: "/recommendations/genre/:id",
+        element: <GenrePage />,
+    },
+ 
 ]);
 const queryClient = new QueryClient({
     defaultOptions: {

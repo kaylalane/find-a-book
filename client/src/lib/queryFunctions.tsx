@@ -1,8 +1,8 @@
 export const fetchBooks = async () => {
     const apiLink =
         process.env.NODE_ENV === "production"
-            ? `/api/books`
-            : `http://localhost:3000/api/books`;
+            ? `/api/book`
+            : `http://localhost:3000/api/book`;
 
     const req = await fetch(apiLink, {
         method: "GET",
@@ -22,8 +22,8 @@ export const fetchBookById = async ({ queryKey }: { queryKey: string[] }) => {
     const id = queryKey[1];
     const apiLink =
         process.env.NODE_ENV === "production"
-            ? `/api/books/${id}`
-            : `http://localhost:3000/api/books/${id}`;
+            ? `/api/book/${id}`
+            : `http://localhost:3000/api/book/${id}`;
 
     const book = await fetch(apiLink, {
         method: "GET",
@@ -68,8 +68,8 @@ export const fetchBookReviews = async ({
     const id = queryKey[1];
     const apiLink =
         process.env.NODE_ENV === "production"
-            ? `/api/comments/${id}`
-            : `http://localhost:3000/api/comments/${id}`;
+            ? `/api/comment/${id}`
+            : `http://localhost:3000/api/comment/${id}`;
     const req = await fetch(apiLink, {
         method: "GET",
         headers: {
@@ -88,8 +88,8 @@ export const fetchAllUserComments = async ({
 
     const apiLink =
         process.env.NODE_ENV === "production"
-            ? `/api/user/comments/user/${id}`
-            : `http://localhost:3000/api/comments/user/${id}`;
+            ? `/api/user/comment/user/${id}`
+            : `http://localhost:3000/api/comment/user/${id}`;
 
     const res = await fetch(apiLink, {
         method: "GET",
@@ -108,8 +108,30 @@ export const fetchAllUserComments = async ({
 export const fetchReviews = async () => {
     const apiLink =
         process.env.NODE_ENV === "production"
-            ? `/api/reviews`
-            : `http://localhost:3000/api/reviews`;
+            ? `/api/review`
+            : `http://localhost:3000/api/review`;
+
+    const req = await fetch(apiLink, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (!req.ok) {
+        throw new Error("Network response was not ok");
+    }
+
+    return req.json();
+};
+
+export const fetchShelves = async ({ queryKey }: { queryKey: string[] }) => {
+    const id = queryKey[1];
+    
+    const apiLink =
+        process.env.NODE_ENV === "production"
+            ? `/api/shelf/${id}`
+            : `http://localhost:3000/api/shelf/${id}`;
 
     const req = await fetch(apiLink, {
         method: "GET",

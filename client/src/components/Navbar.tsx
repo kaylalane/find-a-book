@@ -72,7 +72,7 @@ export default function Navbar() {
                 <a href="/" className="menu-item">
                     Home
                 </a>
-                <a href="/" className="menu-item">
+                <a href="/list" className="menu-item">
                     My Books
                 </a>
                 <a href="/recommendations" className="menu-item">

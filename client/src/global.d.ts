@@ -1,27 +1,27 @@
-// Type definitions for global variables
-type AccountType = {
+// interface definitions for global variables
+interface AccountType {
     _id: string;
     userId: string;
-};
+    bio?: string;
+    birthDate?: string;
+}
 
-type UserType = {
+interface UserType {
     _id: string;
-    name: string;
-    email: string;
-    password: string;
+    username: string;
+    clerkId: string;
     profileImg?: string;
     bio?: string;
-    refreshToken: string;
-};
+}
 
-type AuthorType = {
+interface AuthorType {
     _id: string;
     name: string;
     bio: string;
     profileImg?: string;
-};
+}
 
-type BookType = {
+interface BookType {
     _id: string;
     ISBN: string;
     title: string;
@@ -34,11 +34,12 @@ type BookType = {
     price: number;
     genres: string[];
     pages?: number;
+    language: string;
     authorName: string;
     authorId: string;
-};
+}
 
-type Book_ReviewType = {
+interface Book_ReviewType {
     _id: string;
     review: string;
     createdAt: string;
@@ -52,9 +53,9 @@ type Book_ReviewType = {
     authorId: string;
     userId: string;
     userName: string;
-};
+}
 
-type CommentType = {
+interface CommentType {
     _id: string;
     comment: string;
     createdAt: string;
@@ -63,12 +64,11 @@ type CommentType = {
     username: string;
     reviewId: string;
     userId: string;
-};
+}
 
-type ShelfType = {
+interface ShelfType {
     _id: string;
     name: string;
-    description: string;
     books: BookType[];
     userId: string;
-};
+}
