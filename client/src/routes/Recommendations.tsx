@@ -21,31 +21,37 @@ export default function Recommendations() {
         <Layout className="recommendations-page">
             <h1 className="page__title">Recommendations</h1>
 
-            <section className="recommendations__section">
+            <section className="flex-column">
                 <h2 className="recommendations__title">Fantasy</h2>
 
                 <div className="book-row-container">
                     <div className="book-row">
-                    {fantastyBooks.map((book: BookType) => (
+                        {fantastyBooks.map((book: BookType) => (
                             <VerticalBookCover key={book._id} book={book} />
-                            ))}
-                     </div>
+                        ))}
+                    </div>
                 </div>
-                <a href="/recommendations/genre/fantasy" className="link--primary recommendations__more-link">
+                <a
+                    href="/recommendations/genre/fantasy"
+                    className="link--primary recommendations__more-link"
+                >
                     More for this genre »
                 </a>
             </section>
-            <section className="recommendations__section">
+            <section className="flex-column">
                 <h2>Romance</h2>
 
                 <div className="book-row-container">
                     <div className="book-row">
-                    {romanceBooks.map((book: BookType) => (
-                        <VerticalBookCover key={book._id} book={book} />
-                    ))}
+                        {romanceBooks.map((book: BookType) => (
+                            <VerticalBookCover key={book._id} book={book} />
+                        ))}
                     </div>
                 </div>
-                <a href="/recommendations/genre/romance" className="link--primary recommendations__more-link">
+                <a
+                    href="/recommendations/genre/romance"
+                    className="link--primary recommendations__more-link"
+                >
                     More for this genre »
                 </a>
             </section>

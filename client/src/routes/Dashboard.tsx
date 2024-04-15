@@ -177,7 +177,7 @@ export default function Dashboard() {
                 </div>
             </SignedOut>
             <SignedIn>
-                <Layout>
+                <Layout className="main">
                     <div className="homepage">
                         <CurrentlyReading
                             books={currentlyReading.slice(0, 3)}

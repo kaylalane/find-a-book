@@ -1,6 +1,6 @@
 export default function VerticalBookCover({ book }: { book: BookType }) {
     return (
-        <a href={`/books/${book._id}`}>
+        <a href={`/book/${book._id}`}>
             <img
                 src={book.cover}
                 alt={`${book.title} cover`}

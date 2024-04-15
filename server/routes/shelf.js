@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
-router.get("/:id", async (req, res) => {
+router.get("/user/:id", async (req, res) => {
     try {
         let shelfCollection = await db.collection("Shelf");
         let shelves = await shelfCollection
@@ -15,7 +15,58 @@ router.get("/:id", async (req, res) => {
             res.status(200).send(shelves);
         }
     } catch (error) {
-        console.log(error);
+        console.log("Failed to fetch user shelves. ", error);
+    }
+});
+
+router.get("/:id", async (req, res) => {
+    try {
+        let shelfCollection = await db.collection("Shelf");
+        let shelf = await shelfCollection.find({
+            _id: new ObjectId(req.params.id),
+        });
+
+        if (shelf) {
+            res.status(200).send(shelf);
+        }
+    } catch (error) {
+        console.log("Failed to fetch shelf. ", error);
+    }
+});
+
+router.post("/new-user", async (req, res) => {
+    try {
+        let shelfCollection = await db.collection("Shelf");
+        const defaultShelves = [
+            {
+                name: "All",
+                userId: new ObjectId(req.body.userId),
+                books: [],
+            },
+            {
+                name: "Currently Reading",
+                userId: new ObjectId(req.body.userId),
+                books: [],
+            },
+            {
+                name: "Want to Read",
+                userId: new ObjectId(req.body.userId),
+                books: [],
+            },
+            {
+                name: "Read",
+                userId: new ObjectId(req.body.userId),
+                books: [],
+            },
+        ];
+
+        let result = await shelfCollection.insertMany(defaultShelves);
+
+        if (result) {
+            res.status(200).send(result);
+        }
+    } catch (error) {
+        console.log("Default shelves creation failed. ", error);
     }
 });
 

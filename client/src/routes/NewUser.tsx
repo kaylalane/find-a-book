@@ -13,7 +13,7 @@ export default function NewUser() {
                 ? `/api/user`
                 : `http://localhost:3000/api/user`;
         try {
-            await fetch(apiLink, {
+            const newUserReq = await fetch(apiLink, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -22,6 +22,22 @@ export default function NewUser() {
                     email: user?.emailAddresses[0].emailAddress || "",
                     username: user?.username || "",
                     clerkId: user?.id || "",
+                }),
+            });
+            const newUser = await newUserReq.json();
+
+            const shelfApiLink =
+                process.env.NODE_ENV === "production"
+                    ? `/api/shelf/new-user`
+                    : `http://localhost:3000/api/shelf/new-user`;
+
+            await fetch(shelfApiLink, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId: newUser._id,
                 }),
             });
         } catch (err) {

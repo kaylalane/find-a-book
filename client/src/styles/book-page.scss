@@ -31,6 +31,44 @@
     align-items: center;
 }
 
+.default-list-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.default-list-buttons button {
+    color: white;
+    background-color: rgb(var(--primary));
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+
+    &:first-of-type {
+        box-sizing: border-box;
+        width: 80%;
+        font-size: 16px;
+        font-weight: 700;
+        border: none;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+    &:last-of-type {
+        box-sizing: border-box;
+
+        border: none;
+        width: 18%;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    &:hover {
+        background-color: rgba(var(--primary), 0.8);
+    }
+}
+
 .review-card {
     padding: 1rem;
     border-radius: var(--border-radius);

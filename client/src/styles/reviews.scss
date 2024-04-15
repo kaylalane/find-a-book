@@ -38,8 +38,8 @@
     display: flex;
     gap: 0.5rem;
     flex-flow: column nowrap;
-    width: 100%;
     color: rgb(var(--background));
+    margin: 8px;
 }
 
 .review-card__comment {
@@ -48,13 +48,6 @@
     border-radius: var(--border-radius);
     background-color: rgb(var(--text));
     color: rgb(var(--background));
-}
-
-.comments__container {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 8px;
-    width: 100%;
 }
 
 @media (max-width: 576px) {

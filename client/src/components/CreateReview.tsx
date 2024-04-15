@@ -64,9 +64,9 @@ export default function CreateReview({ book }: { book: BookType }) {
             <div className="separator separator--margin"></div>
             <form
                 action=""
-                className="review-form"
+                className="review-form flex-column"
             >
-                <label className="review-form-label">
+                <label className="review-form__label flex-column">
                     <p className=" my-2">What did you think?</p>
                     <textarea
                         name=""

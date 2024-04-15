@@ -49,6 +49,10 @@ const router = createBrowserRouter([
         element: <AccountPage />,
     },
     {
+        path: "/user/:id",
+        element: <AccountPage />,
+    },
+    {
         path: "/login",
         element: <LoginPage />,
     },
@@ -61,7 +65,7 @@ const router = createBrowserRouter([
         element: <AuthorPage />,
     },
     {
-        path: "/books/:id",
+        path: "/book/:id",
         element: (
             <Layout>
                 <Suspense fallback={<BookPageSkeleton />}>
@@ -94,7 +98,6 @@ const router = createBrowserRouter([
         path: "/recommendations/genre/:id",
         element: <GenrePage />,
     },
- 
 ]);
 const queryClient = new QueryClient({
     defaultOptions: {

@@ -11,7 +11,7 @@ export default function BookCard({
     return (
         <div className="book-card">
             <Suspense fallback={"loading"}>
-                <a href={`/book/${book._id}`}>
+                <a href={`/book/${book._id}`} className="">
                     <img
                         src={book.cover || ""}
                         alt={`${book.title} cover`}

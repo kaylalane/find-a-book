@@ -17,7 +17,7 @@ export default function Navbar() {
                 </NavLink>
                 <form
                     action=""
-                    className="search-form"
+                    className="search-form flex-center"
                     onSubmit={(e) => handleSearch(e)}
                 >
                     <input type="search" className="search-form__input" />
@@ -31,7 +31,7 @@ export default function Navbar() {
                         <img
                             src="/user.svg"
                             alt="User Icon"
-                            className="avatar__image"
+                            className="avatar-image avatar-image--nav"
                         />
                     </DropdownMenu.Trigger>
 

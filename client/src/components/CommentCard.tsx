@@ -18,11 +18,20 @@ export default function CommentCard({ comment }: { comment: CommentType }) {
     return (
         <div className="comment">
             <div className="comment__meta">
-                <p className="comment__author">{comment.username}</p>
+                <img
+                    src={`${user?.imageUrl || ""}`}
+                    alt="user avatar"
+                    className="comment__avatar"
+                />
+                <p className="comment__author">
+                    <a href={`/user/${comment.userId}`} className="link">
+                        {comment.username}
+                    </a>
+                </p>
                 <p className="comment__text">{comment.comment}</p>
             </div>
 
-            <div className="comment__div">
+            <div className="comment__div flex-column">
                 <p className="comment__date">{commentAge}</p>
                 {isUserComment && (
                     <button

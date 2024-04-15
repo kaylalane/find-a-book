@@ -33,43 +33,50 @@ export default function FeedItemCard({ review }: { review: Book_ReviewType }) {
     }, [review]);
 
     if (bookReq.isLoading) {
-        return <div>Loading...</div>;
+        return <div className="book-card-skeleton"></div>;
     }
     const book = bookReq.data;
 
     return (
-        <div className="feed-item-card">
-            <div className="feed-item-card__header">
-                <p className=" ">
-                    {review.userName} reviewed{" "}
-                    <a
-                        href={`/book/${review.bookId}`}
-                        className=" feed-item-card__title"
-                    >
-                        {review.bookName}
-                    </a>
-                </p>
-                {review.overallRating && (
-                    <div className="feed-item-card__rating">
-                        <span className="sr-only">
-                            {review.overallRating} out of 5 stars
-                        </span>
-                        <ReviewStars rating={review.overallRating} />
+        <div className="feed-card">
+            <div className="feed-card__top">
+                <div className="feed-card__header space-between-div">
+                    <p className=" ">
+                        <a href={""} className="link">
+                            {review.userName}
+                        </a>
+                        {"  "}
+                        reviewed{" "}
+                        <a href={`/book/${review.bookId}`} className="link">
+                            {review.bookName}
+                        </a>
+                    </p>
+                    {review.overallRating && (
+                        <div className="feed-card__rating">
+                            <span className="sr-only">
+                                {review.overallRating} out of 5 stars
+                            </span>
+                            <ReviewStars rating={review.overallRating} />
+                        </div>
+                    )}
+                </div>
+                <em className="feed-card__review mb-2">{review.review}</em>
+
+                {book && (
+                    <div className="book-card--outline">
+                        <BookCard book={book} />
                     </div>
                 )}
             </div>
-            <em className="feed-item-card__review mb-2">{review.review}</em>
+            <div className="feed-card__like-information">
+                <p> People have liked this </p>
+            </div>
 
-            {book && <BookCard book={book} />}
             <div className="comments__container">
                 {comments &&
                     comments.map((comment) => (
                         <CommentCard comment={comment} key={comment._id} />
                     ))}
-            </div>
-
-            <div className="feed-item-card__like-information">
-                <p> People have liked this </p>
             </div>
             <CreateComment
                 review={review}

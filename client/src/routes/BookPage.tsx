@@ -58,7 +58,10 @@ export default function BookPage() {
                     <h2 className="heading">Ratings & Reviews</h2>
                     <div className="book-page__review">
                         <p>What do you think?</p>
-                        <img src={user?.imageUrl} className="user-image" />
+                        <img
+                            src={user?.imageUrl}
+                            className="avatar-image avatar-image--large"
+                        />
                         {book && <NewReviewStars book={book} />}
                         <a
                             href={`/review/${book?._id || ""}`}

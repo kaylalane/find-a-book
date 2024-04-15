@@ -69,6 +69,6 @@ interface CommentType {
 interface ShelfType {
     _id: string;
     name: string;
-    books: BookType[];
+    books: string[];
     userId: string;
 }
