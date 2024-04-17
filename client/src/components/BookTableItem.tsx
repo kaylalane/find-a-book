@@ -32,34 +32,34 @@ export default function BookTableItem({ bookId }: { bookId: string }) {
     return (
         <>
             {book && (
-                <tr key={book?._id}>
+                <tr key={book._id}>
                     <td width="5%">
                         <img
-                            src={book?.cover}
-                            alt={`${book?.title} cover`}
+                            src={book.cover}
+                            alt={`${book.title} cover`}
                             className="book-card__cover--small"
                         />
                     </td>
                     <td className="">
                         <a
-                            href={`/book?/${book?._id}`}
+                            href={`/book/${book._id}`}
                             className="book-table__author"
                         >
                             {" "}
-                            {book?.title}
+                            {book.title}
                         </a>
                         <br></br>
                         by{" "}
-                        <a href={`/author/${book?.authorId}`}>
+                        <a href={`/author/${book.authorId}`}>
                             {book?.authorName}
                         </a>
                         <br></br>
                         <div className="mini-ratings">
-                            {book?.overallRating && (
+                            {book.overallRating && (
                                 <ReviewStars rating={book?.overallRating} />
                             )}
-                            {book?.overallRating} avg ratings -{" "}
-                            {book?.numberOfReviews} ratings - published{" "}
+                            {book.overallRating} avg ratings -{" "}
+                            {book.numberOfReviews} ratings - published{" "}
                             {new Date(book?.publishedAt || "").getFullYear()}
                         </div>
                     </td>

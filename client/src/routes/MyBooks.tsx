@@ -39,13 +39,10 @@ export default function MyBooks() {
             {shelves && (
                 <div className="shelves">
                     {shelves.map((shelf) => (
-                        <div className={shelf.name}>
+                        <div className={shelf.name} key={shelf._id}>
                             <h2>{shelf.name}</h2>
                             <div className="shelf">
-                                <BookTable
-                                    bookIds={shelf.books}
-                                    key={shelf.name}
-                                />
+                                <BookTable bookIds={shelf.books} />
                             </div>
                         </div>
                     ))}

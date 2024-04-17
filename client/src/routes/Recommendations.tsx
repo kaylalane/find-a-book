@@ -15,7 +15,6 @@ export default function Recommendations() {
     const romanceBooks = books.filter((book: BookType) =>
         book.genres.includes("Romance")
     );
-    console.log(books);
 
     return (
         <Layout className="recommendations-page">

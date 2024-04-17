@@ -23,25 +23,24 @@ POST http://localhost:3000/api/author
 Content-Type: application/json
 
 {
-    "name": "TJ Klune"
+    "name": "Samantha Shannon"
 }
 
 
 ###
 
-POST http://localhost:3000/api/books
+POST http://localhost:3000/api/book
 Content-Type: application/json
 
 {
-    "title": "Ravensong",
-    "authorName": "TJ Klune",
-    "authorId": "65aee3fb00a41c5cdba7c911",
-    "genres": ["Fantasy Romance", "LGBTQIA+", "Science Fiction", "Paranormal"],
-    "cover": "https://covers.openlibrary.org/b/isbn/9781250890344-L.jpg",
-    "description": "Gordo Livingstone never forgot the lessons carved into his skin. Hardened by the betrayal of a pack that left him behind, he sought solace in the garage in his tiny mountain town, vowing never again to involve himself in the affairs of wolves. <br> It should have been enough.It was, until the wolves came back, and with them, Mark Bennett. And when his town is caught in the jaws of a beast, Gordo is summoned back into the life that left him. <br> “Gordo, you must rise. For your pack. For us. I must ask you to become the witch to the wolves.” <br> Now, a year later, Gordo has once again found himself the witch of the Bennett pack. Green Creek has settled after the death of Richard Collins, and Gordo constantly struggles to ignore Mark and the song that howls between them. <br> But time is running out. Something is coming. And this time, it’s coming from within.",
-    "pages": 512,
+    "title": "The Priory of the Orange Tree",
+    "authorName": "Samantha Shannon",
+    "authorId": "661f4126c334dd197c815c60",
+    "genres": ["Fantasy Romance", "LGBTQIA+", "Dragons"],
+    "cover": "https://covers.openlibrary.org/b/isbn/9781408883464-L.jpg",
+    "description": "A world divided. A queendom without an heir. An ancient enemy awakens. The House of Berethnet has ruled Inys for a thousand years. Still unwed, Queen Sabran the Ninth must conceive a daughter to protect her realm from destruction - but assassins are getting closer to her door.<br> Ead Duryan is an outsider at court. Though she has risen to the position of lady-in-waiting, she is loyal to a hidden society of mages. Ead keeps a watchful eye on Sabran, secretly protecting her with forbidden magic.<br> Across the dark sea, Tane has trained to be a dragonrider since she was a child, but is forced to make a choice that could see her life unravel.<br> Meanwhile, the divided East and West refuse to parley, and forces of chaos are rising from their sleep.",
+    "pages": 848,
     "rating": 5,
-    "ISBN": "9781250890344",
-    "publishedAt": "August 1, 2023",
-    "seriesId": "65aee55f1c77436e7317ae7b"    
+    "ISBN": "9781408883464",
+    "publishedAt": "February 18, 2020"
 }

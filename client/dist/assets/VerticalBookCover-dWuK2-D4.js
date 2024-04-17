@@ -1,0 +1,1 @@
+import{j as e}from"./index-QoI0tpRR.js";function t({book:r}){return e.jsx("a",{href:`/book/${r._id}`,children:e.jsx("img",{src:r.cover,alt:`${r.title} cover`,className:"book-card__cover--large"})})}export{t as V};

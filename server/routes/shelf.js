@@ -70,4 +70,33 @@ router.post("/new-user", async (req, res) => {
     }
 });
 
+router.post("/add-to-shelf", async (req, res) => {
+    try {
+        const { userId, bookId, shelfName } = req.body;
+        console.log(userId, bookId, shelfName);
+        let shelfCollection = await db.collection("Shelf");
+        let userShelves = await shelfCollection
+            .find({
+                userId: new ObjectId(userId),
+            })
+            .toArray();
+        const shelf = userShelves.filter((s) => s.name === shelfName);
+
+        let result = await shelfCollection.updateOne(
+            { _id: new ObjectId(shelf[0]._id) },
+            {
+                $push: {
+                    books: bookId,
+                },
+            }
+        );
+
+        if (result) {
+            res.status(200).send(result);
+        }
+    } catch (error) {
+        console.log("Failed to add book to shelf. ", error);
+    }
+});
+
 export default router;
